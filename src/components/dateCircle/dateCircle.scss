@@ -1,0 +1,138 @@
+.range {
+	width: 100%;
+	margin: 0 auto;
+	padding-right: 35px;
+	max-width: 973px;
+	font-weight: 700;
+	font-size: 200px;
+	line-height: 80%;
+	letter-spacing: -0.02em;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	cursor: default;
+	z-index: 1;
+		
+	&_start {
+		padding: 0;
+		margin: 0;
+		color: var(--font-range-start-color);
+	}
+
+	&_end {
+		padding: 0;
+		margin: 0;
+		color: var(--font-range-end-color);
+	}
+
+	@media (width <= 1024px) {
+		padding-right: 0;
+		max-width: 660px;
+		font-size: 140px;
+	}
+
+	@media (width < 768px) {
+		padding-right: 0;
+		max-width: 273px;
+		font-size: 56px;
+	}
+
+}
+
+.spinner {
+	--angle: 0deg;
+	--time: 300ms;
+	--delay: 300ms;
+
+	&__main-circle {
+		position: relative;
+		width: 530px;
+		height: 530px;
+		border: 1px solid var(--spinner-color);
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+    align-items: center;
+		transform: rotate(var(--angle));
+    transition: all var(--time) ease-in-out 0s;
+		z-index: 2;
+	}
+
+	&__circle-area {
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		cursor: pointer;
+		visibility: visible;
+
+		&:hover .spinner__circle {
+			background-color: var(--bg-color);
+			scale: 1;
+		}
+	}
+
+	&__circle {
+		position: relative;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		align-items: center;
+    	justify-content: center;
+		background-color: var(--font-main-color);
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		transform: rotate(calc(-360deg / var(--count) * var(--i) - var(--angle)));
+		border: 1px solid var(--circle-color);
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 150%;
+		color: var(--font-main-color);
+		visibility: visible;
+		scale: 0.105;
+		transition: all 300ms ease-in-out;
+	}
+
+	&__title {
+		position: absolute;
+		left: 76px;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 150%;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 300ms linear var(--delay);
+	}
+
+	&__shoulder {
+    width: calc(100% + 56px);
+    transform-origin: center;
+    position: absolute;
+		transform: rotate(calc(360deg / var(--count) * var(--i)));
+		visibility: hidden;
+
+		&_active {
+
+			& .spinner__title {
+				opacity: 1;
+				visibility: visible;
+				cursor: default;
+			}
+
+			& .spinner__circle {
+				width: 56px;
+				height: 56px;
+				background-color: var(--bg-color);
+				scale: 1;
+				cursor: default;
+			}
+
+		}
+	}
+
+	@media (width <= 768px) {
+		display: none;
+	}
+
+}

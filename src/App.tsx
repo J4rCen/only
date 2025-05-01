@@ -1,9 +1,9 @@
-import React from "react";
+import HistoricalDates from './pages/historicalDates/historicalDates'
 
 const App = () => {
     return (
-        <div>
-            <h1>Hello</h1>
+        <div className="App">
+            <HistoricalDates/>
         </div>
     )
 }
